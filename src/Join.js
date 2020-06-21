@@ -19,7 +19,7 @@ function Join () {
         <div className="joinBox m-auto card">
             <h6 className="card-header">Welcome to SNA</h6>
             <div className="card-body">
-                <form>
+                <form id="joinForm" method="post" action="/">
                     <div className="form-group">
                         <label for="ipt_email">Email</label>
                         <input id="ipt_email" className="form-control" type="email" placeholder="email" required></input>

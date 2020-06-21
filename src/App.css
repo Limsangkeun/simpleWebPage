@@ -25,10 +25,10 @@ html, body {
 }
 
 .joinBox {
-  margin-top: 80px !important;
+  margin-top: 10px !important;
   border-radius: 5px;
   color: white;
   background-color: #5a4d4a;
   width: 400px;
-  height: 480px;
+  height: 560px;
 }

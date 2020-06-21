@@ -1,5 +1,5 @@
 import Axios from 'axios';
-
+import Crypto from 'crypto';
 const UT = {
     isEmpty: function(target) {
         if(target===null || target===undefined || target==='') {
@@ -10,15 +10,25 @@ const UT = {
     isNotEmpty: function(target) {
         return !this.isEmpty(target);       
     },
-    request: function(location, method, type, param, result) {
-        switch (method) {
-            case 'POST':
-                Axios.post(location, param, {responseType:type, baseURL:"http://localhost:8080/"})
-                    .then((data)=>{result=data}).catch((error)=>{result=error});
-                break;
-            case 'GET':
-                break;
+    request: function(location, param, callback) {
+        Axios.post(location,param, {
+            baseURL:'http://localhost:9090/',
+            timeout:'1000',
+            responseType:'json'
+        }).then(res => callback!= undefined ? callback(res) : console.log(res));
+    },
+    encrypt: function(target, callback) {
+        if(typeof target !== 'string') {
+            alert('only string object can be encrypt');
+            return;
         }
+        Crypto.pbkdf2(target,'milito6574',100000, 64, 'sha512', (err,key) => {
+            if(this.isNotEmpty(err)) {
+                console.log(err);
+                callback(target);
+            }
+            callback(key.toString('base64'));
+        });
     }
 }
 

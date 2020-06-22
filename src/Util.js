@@ -13,7 +13,7 @@ const UT = {
     request: function(location, param, callback) {
         Axios.post(location,param, {
             baseURL:'http://localhost:9090/',
-            timeout:'1000',
+            timeout:'3000',
             responseType:'json'
         }).then(res => callback!= undefined ? callback(res) : console.log(res));
     },

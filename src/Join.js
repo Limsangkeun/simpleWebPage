@@ -18,12 +18,18 @@ function checkLogin () {
         }
         var param = {
             email : document.getElementById('ipt_email').value,
-            pwd : document.getElementById('ipt_pwd').value,
+            pwd : result,
             nickname: document.getElementById('ipt_nickName').value,
             birth: document.getElementById('ipt_birth').value.split('-').join('')
         }
         console.log(param);
-        UT.request('/user/join',param);
+        UT.request('/user/join',param, (res)=>{
+            debugger;
+            if(res.data.result !== undefined && res.data.result === 1) {
+                alert("회원가입에 성공하였습니다.");
+                window.location.replace("/login");
+            }
+        });
     });
 }
 
